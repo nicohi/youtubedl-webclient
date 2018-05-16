@@ -30,7 +30,8 @@ export const addSong = url => {
 export const addDuplicateSong = obj => {
   return dispatch => {
     let headers = {"Content-Type": "application/json"};
-    let body = JSON.stringify({obj});
+    let body = JSON.stringify({"url": obj.url, "title": obj.title, "filename":obj.filename});
+    console.log(obj);
     return fetch("/api/songs/", {headers, method: "POST", body})
       .then(res => res.json())
       .then(song => {

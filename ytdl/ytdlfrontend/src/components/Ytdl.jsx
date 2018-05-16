@@ -36,11 +36,11 @@ class Ytdl extends Component {
     e.preventDefault();
     var duplicate = false;
     this.props.songs.forEach(element => {
-      if(element.url === this.state.url){
+      if(element.url === this.state.url && !duplicate){
         var obj = {
-          'filename': element.filename,
-          'title': element.title,
-          'url': element.url,
+          "filename": element.filename,
+          "title": element.title,
+          "url": element.url,
         }
         this.props.addDuplicateSong(obj).then(this.resetForm());
         duplicate = true;
