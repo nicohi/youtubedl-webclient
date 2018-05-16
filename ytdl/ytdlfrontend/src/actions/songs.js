@@ -15,8 +15,8 @@ export const fetchSongs = () => {
 export const addSong = url => {
   return dispatch => {
     let headers = {"Content-Type": "application/json"};
-    let body = JSON.stringify({url, "title": "S U C C", "state": "dl"});
-    return fetch("/api/songs/", {headers, method: "POST", body})
+    let body = JSON.stringify({url,});
+    return fetch("/api/dlsong", {headers, method: "POST", body})
       .then(res => res.json())
       .then(song => {
         return dispatch({
