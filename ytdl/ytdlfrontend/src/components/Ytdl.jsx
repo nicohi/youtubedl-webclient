@@ -31,7 +31,11 @@ class Ytdl extends Component {
   
   submitSong = (e) => {
     e.preventDefault();
-    this.props.addSong(this.state.url).then(this.resetForm);
+    //this.resetForm;
+    this.props.addSong(this.state.url).then(function(val){
+        //this.props.songs=[];
+        this.props.fetchSongs();
+    });
     this.setState({url: ""});
   }
 

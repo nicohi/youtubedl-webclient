@@ -6,7 +6,7 @@ const initialState = [];
 
     switch (action.type) {
   
-      case 'ADD_NOTE':
+      case 'ADD_SONG':
         return [...state, action.song];
 
       case 'DELETE_SONG':
