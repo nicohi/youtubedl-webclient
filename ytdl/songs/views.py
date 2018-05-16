@@ -1,3 +1,4 @@
+import sys
 from django.shortcuts import render
 
 from rest_framework import status
@@ -14,6 +15,7 @@ def dl_url(request):
     try:
         dbdata = ytdl(request.data['url'], './test/')
         print(dbdata)
+        print(sys.argv)
         serializer = SongSerializer(data=dbdata)
         if serializer.is_valid():
             print(serializer.save())

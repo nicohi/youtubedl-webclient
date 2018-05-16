@@ -19,9 +19,9 @@ class MyLogger(object):
 def handle_finished(d):
     #turn video filename into .mp3 (youtubedl gives filename before conversion to mp3)
     filename1 = d['filename'].split('/')[-1].split('.')[0] 
-    filename2 = d['filename'].split('/')[-1]
+    #filename2 = d['filename'].split('/')[-1]
     global data
-    data['filename'] = filename2
+    data['filename'] = filename1 + '.mp3'
     data['title'] = filename1
     #print()
 
