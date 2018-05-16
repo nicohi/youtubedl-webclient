@@ -31,3 +31,4 @@ python manage.py runserver --settings=ytdlbackend.production_settings
 
 http://v1k45.com/blog/modern-django-part-1-setting-up-django-and-react/
 
+http://v1k45.com/blog/modern-django-part-2-redux-and-react-router-setup/
