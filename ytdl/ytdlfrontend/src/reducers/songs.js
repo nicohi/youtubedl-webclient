@@ -4,10 +4,14 @@ const initialState = [];
   export default function songs(state=initialState, action) {
     let songList = state.slice();
 
+
     switch (action.type) {
   
       case 'ADD_SONG':
-        return [...state, action.song];
+        return [action.song,...state];
+
+      case 'ADD_DUPLICATE_SONG':
+        return [action.song,...state];
 
       case 'DELETE_SONG':
         songList.splice(action.index, 1);

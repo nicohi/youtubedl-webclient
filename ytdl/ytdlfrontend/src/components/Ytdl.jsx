@@ -13,6 +13,9 @@ const mapDispatchToProps = dispatch => {
     fetchSongs: () => {
       dispatch(songs.fetchSongs());
     },
+    addDuplicateSong: (obj) => {
+      return dispatch(songs.addDuplicateSong(obj));
+    }
   }
 }
 
@@ -31,12 +34,21 @@ class Ytdl extends Component {
   
   submitSong = (e) => {
     e.preventDefault();
-    //this.resetForm;
-    this.props.addSong(this.state.url).then(function(val){
-        //this.props.songs=[];
-        this.props.fetchSongs();
+    var duplicate = false;
+    this.props.songs.forEach(element => {
+      if(element.url === this.state.url){
+        var obj = {
+          'filename': element.filename,
+          'title': element.title,
+          'url': element.url,
+        }
+        this.props.addDuplicateSong(obj).then(this.resetForm());
+        duplicate = true;
+      }
     });
-    this.setState({url: ""});
+    if(!duplicate){
+      this.props.addSong(this.state.url).then(this.resetForm);
+    }
   }
 
   render() {
@@ -59,6 +71,7 @@ class Ytdl extends Component {
             <tr>
               <th>ID</th>
               <th>Title</th>
+              <th>Date</th>
             </tr>
           </thead>
           <tbody>
@@ -66,6 +79,7 @@ class Ytdl extends Component {
               <tr key={`note_${song.id}`}>
                 <td>{song.id}</td>
                 <td>{song.title}</td>
+                <td>{new Date(song.time).toLocaleString()}</td>
                 <td><button onClick={() => this.props.deleteSong(id)}>delete</button></td>
               </tr>
             ))}

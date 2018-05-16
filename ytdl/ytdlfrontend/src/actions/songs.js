@@ -23,7 +23,22 @@ export const addSong = url => {
           type: 'ADD_SONG',
           song
         })
-      })
+      })  
+  }
+}
+
+export const addDuplicateSong = obj => {
+  return dispatch => {
+    let headers = {"Content-Type": "application/json"};
+    let body = JSON.stringify({obj});
+    return fetch("/api/songs/", {headers, method: "POST", body})
+      .then(res => res.json())
+      .then(song => {
+        return dispatch({
+          type: 'ADD_DUPLICATE_SONG',
+          song
+        })
+      })  
   }
 }
 
