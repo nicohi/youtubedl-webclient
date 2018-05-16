@@ -5,7 +5,7 @@ from django.db import models
 class Song(models.Model):
     url = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
-    state = models.CharField(max_length=10)
+    filename = models.CharField(max_length=255)
     time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
