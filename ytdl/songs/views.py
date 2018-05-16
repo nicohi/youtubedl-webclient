@@ -23,7 +23,7 @@ def dl_url(request):
         #return Response({request.data['url']: 'ERROR'})
     except:
         print("ERROR IN URL")
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response("ERROR", status=status.HTTP_400_BAD_REQUEST)
         #return Response({request.data['url']: 'ERROR'})
 #    dbdata = dl_url('https://www.youtube.com/watch?v=VYOjWnS4cMY', '/home/sakamoto/test/')
 #        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
