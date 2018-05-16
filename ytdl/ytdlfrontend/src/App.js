@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import {Route, Switch, BrowserRouter} from 'react-router-dom';
-
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import ytdlbackend from "./reducers";
-
 import Ytdl from "./components/Ytdl";
 import NotFound from "./components/NotFound";
+import thunk from "redux-thunk";
 
-let store = createStore(ytdlbackend);
+let store = createStore(ytdlbackend, applyMiddleware(thunk));
 
 class App extends Component {
   render() {
