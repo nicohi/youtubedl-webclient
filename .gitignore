@@ -3,6 +3,11 @@
 # dependencies
 /node_modules
 
+# assets
+assets/
+webpack-stats.dev.json
+webpack-stats.prod.json
+
 # testing
 /coverage
 
