@@ -4,11 +4,14 @@ import {songs} from "../actions";
 
 const mapDispatchToProps = dispatch => {
   return {
-    addSong: (text) => {
-      dispatch(songs.addSong(text));
+    addSong: (url) => {
+      return dispatch(songs.addSong(url));
     },
     deleteSong: (id) => {
       dispatch(songs.deleteSong(id));
+    },
+    fetchSongs: () => {
+      dispatch(songs.fetchSongs());
     },
   }
 }
@@ -40,11 +43,11 @@ class Ytdl extends Component {
         <h4>Add new Song</h4>
         <form onSubmit={this.submitSong}>
           <input
-            value={this.state.text}
+            value={this.state.url}
             placeholder="Enter Song Link here..."
-            onChange={(e) => this.setState({text: e.target.value})}
+            onChange={(e) => this.setState({url: e.target.value})}
             required />
-          <input type="submit" value="Download song" />
+          <input type="submit" value="Download song"/>
         </form>
         <h4>Songs</h4>
         <table style={{width:"100%"}}>
