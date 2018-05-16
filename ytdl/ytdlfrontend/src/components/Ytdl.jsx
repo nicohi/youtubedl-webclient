@@ -21,22 +21,26 @@ class Ytdl extends Component {
     url: ""
   }
 
+  resetForm = () => {
+    this.setState({url: ""});
+  }
+
   componentDidMount() {
     this.props.fetchSongs();
   }
   
   submitSong = (e) => {
     e.preventDefault();
-    this.props.addSong(this.state.url);
+    this.props.addSong(this.state.url).then(this.resetForm);
     this.setState({url: ""});
   }
 
   render() {
     return (
       <div>
-        <h2>Welcome to Youtube-dl!</h2>
+        <h2>Youtube Downloader</h2>
         <hr />
-        <h3>Add new Song</h3>
+        <h4>Add new Song</h4>
         <form onSubmit={this.submitSong}>
           <input
             value={this.state.url}
@@ -45,13 +49,12 @@ class Ytdl extends Component {
             required />
           <input type="submit" value="Download song"/>
         </form>
-        <h3>Songs</h3>
+        <h4>Songs</h4>
         <table style={{width:"100%"}}>
           <thead>
             <tr>
               <th>ID</th>
               <th>Title</th>
-              <th>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -59,7 +62,6 @@ class Ytdl extends Component {
               <tr key={`note_${song.id}`}>
                 <td>{song.id}</td>
                 <td>{song.title}</td>
-                <td>{song.state}</td>
                 <td><button onClick={() => this.props.deleteSong(id)}>delete</button></td>
               </tr>
             ))}
