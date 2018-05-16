@@ -34,6 +34,7 @@ class Ytdl extends Component {
   
   submitSong = (e) => {
     e.preventDefault();
+    this.resetForm();
     var duplicate = false;
     this.props.songs.forEach(element => {
       if(element.url === this.state.url && !duplicate){
@@ -42,7 +43,7 @@ class Ytdl extends Component {
           "title": element.title,
           "url": element.url,
         }
-        this.props.addDuplicateSong(obj).then(this.resetForm());
+        this.props.addDuplicateSong(obj);
         duplicate = true;
       }
     });
