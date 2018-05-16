@@ -28,6 +28,36 @@ cd ytdl
 python manage.py runserver --settings=ytdlbackend.production_settings
 ```
 
+## test api
+
+post
+```
+curl --request POST \
+    --url http://localhost:8000/api/songs/ \
+    --header 'content-type: application/json' \
+    --data '{ "url": "test.url.com", "title": "testtitle", "state": "test-state" }'
+```
+
+get all
+```
+curl --request GET \
+  --url http://localhost:8000/api/songs/ \
+  --header 'content-type: application/json'
+```
+
+get based on id
+```
+curl --request GET \
+  --url http://localhost:8000/api/songs/1/ \
+  --header 'content-type: application/json'
+```
+
+delete based on id
+```
+curl --request DELETE \
+  --url http://localhost:8000/api/songs/1/ \
+  --header 'content-type: application/json'
+```
 
 http://v1k45.com/blog/modern-django-part-1-setting-up-django-and-react/
 
