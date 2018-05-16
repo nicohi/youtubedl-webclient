@@ -1,4 +1,4 @@
-import sys
+#import sys
 import youtube_dl
 
 #global variables
