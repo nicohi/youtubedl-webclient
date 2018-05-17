@@ -21,7 +21,7 @@ def handle_finished(d):
     global data
     print(d['filename'])
     filename1 = data['filename'].split('/')[-1].split('.')[:-1]
-    filename1 = '.'.join(filename1)
+    filename1 = '.'.join(filename1).encode('ascii','ignore')
     #filename2 = d['filename'].split('/')[-1]
     data['filename'] = filename1 + '.mp3'
     data['title'] = filename1
