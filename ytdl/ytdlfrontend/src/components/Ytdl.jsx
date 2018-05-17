@@ -8,7 +8,7 @@ function Spinner(props) {
   if (!props.loading) {
     return null;
   }
-    return <ReactLoading class="center" type={props.type} color={props.color} height={40} width={40} />;
+    return <ReactLoading className="center" type={props.type} color={props.color} height={40} width={40} />;
 }
 
 const mapDispatchToProps = dispatch => {
@@ -73,12 +73,13 @@ class Ytdl extends Component {
   }
 
   render() {
+    this.props.songs.reverse();
     return (
       <div>
-      <header class="darkbg">        
+      <header className="darkbg">        
         <h2>Music Downloader</h2>
       </header>
-      <div class="mediumPadding">
+      <div className="mediumPadding">
         <h4>Add new Song</h4>
         <form onSubmit={this.submitSong}>
           <input
@@ -87,11 +88,11 @@ class Ytdl extends Component {
             placeholder="Enter Song Link here..."
             onChange={(e) => this.setState({url: e.target.value})}
             required />
-            <input class="btn" type="submit" value="Download"/>
+            <input className="btn" type="submit" value="Download"/>
         </form>
-        <Spinner class="center" type="spin" color="#0000ff" loading={this.state.loading}/>
+        <Spinner className="center" type="spin" color="#0000ff" loading={this.state.loading}/>
         <h4>Songs</h4>
-        <table class="center" style={{width:"80%"}}>
+        <table className="center" style={{width:"80%"}}>
           <thead>
             <tr>
               <th>ID</th>
