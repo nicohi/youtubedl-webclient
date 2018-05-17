@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {songs} from "../actions";
+import ReactLoading from "react-loading";
+import MaterialIcon, {colorPallet} from 'material-icons-react';
+
+function Spinner(props) {
+  if (!props.loading) {
+    return null;
+  }
+    return <ReactLoading type={props.type} color={props.color} height={40} width={40} />;
+}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -21,7 +30,8 @@ const mapDispatchToProps = dispatch => {
 
 class Ytdl extends Component {
   state = {
-    url: ""
+    url: "",
+    loading:false
   }
 
   resetForm = () => {
@@ -33,6 +43,7 @@ class Ytdl extends Component {
   }
   
   submitSong = (e) => {
+    this.setState({loading:true});
     e.preventDefault();
     this.resetForm();
     var duplicate = false;
@@ -43,12 +54,16 @@ class Ytdl extends Component {
           "title": element.title,
           "url": element.url,
         }
-        this.props.addDuplicateSong(obj);
+        this.props.addDuplicateSong(obj).finally( () => {
+          this.setState({loading:false});
+        });
         duplicate = true;
       }
     });
     if(!duplicate){
-      this.props.addSong(this.state.url).then(this.resetForm);
+      this.props.addSong(this.state.url).finally( () => {
+        this.setState({loading:false});
+      });
     }
   }
 
@@ -64,7 +79,8 @@ class Ytdl extends Component {
             placeholder="Enter Song Link here..."
             onChange={(e) => this.setState({url: e.target.value})}
             required />
-          <input type="submit" value="Download song"/>
+          <input style={{display: 'inline-block'}} type="submit" value="Download song"/>
+          <Spinner style={{display: 'inline-block'}} type="spin" color="#0000ff" loading={this.state.loading}/>
         </form>
         <h4>Songs</h4>
         <table style={{width:"100%"}}>
@@ -81,7 +97,8 @@ class Ytdl extends Component {
                 <td>{song.id}</td>
                 <td>{song.title}</td>
                 <td>{new Date(song.time).toLocaleString()}</td>
-                <td><button onClick={() => this.props.deleteSong(id)}>delete</button></td>
+                {/* <td><button><MaterialIcon icon="delete" inactive/></button></td> */}
+                <td><button onClick={() => this.props.deleteSong(id)}><MaterialIcon icon="delete" inactive/></button></td>
               </tr>
             ))}
           </tbody>
