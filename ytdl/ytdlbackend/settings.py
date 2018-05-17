@@ -15,7 +15,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-MPD = 'True'
+MPD = 'False'
 MPD_HOST = 'localhost'
 MPD_PORT = 6600
 
@@ -28,8 +28,7 @@ SECRET_KEY = 'bb&#vvc$sh(vvir(94htc7l4!8vu8qe3u8!hz+k88@e3$@5kih'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
