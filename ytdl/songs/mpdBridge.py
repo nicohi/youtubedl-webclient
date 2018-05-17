@@ -1,9 +1,9 @@
 import mpd
 
-def que_song(song, ip, port):
+def queue_song(song, ip, port):
     client = mpd.MPDClient()
     client.connect(ip, port)
-    client.add('song')
+    client.add(song)
     print(client.playlist())
     client.disconnect()
     #client = mpd.MPDClient(use_unicode=True)
