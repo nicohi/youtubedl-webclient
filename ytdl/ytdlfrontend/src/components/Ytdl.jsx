@@ -34,7 +34,8 @@ const mapDispatchToProps = dispatch => {
 class Ytdl extends Component {
   state = {
     url: "",
-    loading:false
+    loading:false,
+    time: Date.now()
   }
 
   resetForm = () => {
@@ -43,6 +44,7 @@ class Ytdl extends Component {
 
   componentDidMount() {
     this.props.fetchSongs();
+    this.interval = setInterval(() => this.props.fetchSongs(), 30000);
   }
   
   submitSong = (e) => {
