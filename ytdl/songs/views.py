@@ -21,7 +21,6 @@ def dl_url(request):
         serializer = SongSerializer(data=dbdata)
         if serializer.is_valid():
             print(serializer.save())
-            #if(sys.argv[-1] is 'mopidy'):
             filepath = 'file://' + BASE_DIR + '/test/' + dbdata['filename']
             if (MPD == 'True'):
                 print('attempting to queue ' + filepath)
