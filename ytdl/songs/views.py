@@ -42,7 +42,7 @@ def mpd_queue(request):
     try:
         if (MPD == 'True'):
             filepath = 'file://' + BASE_DIR + '/test/' + request['filename']
-            print('attempting to dl ' + filepath)
+            print('attempting to queue ' + filepath)
             queue_song(filepath, MPD_HOST, MPD_PORT)
             return Response("QUEUED", status=status.HTTP_201_CREATED)
         else:
