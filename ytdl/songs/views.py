@@ -24,12 +24,10 @@ def dl_url(request):
             #if(sys.argv[-1] is 'mopidy'):
             filepath = 'file://' + BASE_DIR + '/test/' + dbdata['filename']
             if (MPD == 'True'):
-                print('attempting to dl ' + filepath)
+                print('attempting to queue ' + filepath)
                 queue_song(filepath, MPD_HOST, MPD_PORT)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-            #return Response({request.data['url']: 'DONE'})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        #return Response({request.data['url']: 'ERROR'})
     except:
         print("ERROR IN URL")
         return Response("ERROR", status=status.HTTP_400_BAD_REQUEST)
