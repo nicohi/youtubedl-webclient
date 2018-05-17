@@ -24,6 +24,9 @@ const mapDispatchToProps = dispatch => {
     },
     addDuplicateSong: (obj) => {
       return dispatch(songs.addDuplicateSong(obj));
+    },
+    addDuplicateSongToMpd: (obj) => {
+      return dispatch(songs.addDuplicateSongToMpd(obj));
     }
   }
 }
@@ -55,7 +58,9 @@ class Ytdl extends Component {
           "url": element.url,
         }
         this.props.addDuplicateSong(obj).finally( () => {
-          this.setState({loading:false});
+          this.props.addDuplicateSongToMpd(obj).finally( () => {
+            this.setState({loading:false});
+          })
         });
         duplicate = true;
       }

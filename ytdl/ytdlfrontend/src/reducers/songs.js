@@ -13,6 +13,9 @@ const initialState = [];
       case 'ADD_DUPLICATE_SONG':
         return [action.song,...state];
 
+      case 'ADD_DUPLICATE_SONG_TO_MPD':
+        return [...state];
+
       case 'DELETE_SONG':
         songList.splice(action.index, 1);
         return songList;

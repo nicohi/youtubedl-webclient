@@ -31,12 +31,26 @@ export const addDuplicateSong = obj => {
   return dispatch => {
     let headers = {"Content-Type": "application/json"};
     let body = JSON.stringify({"url": obj.url, "title": obj.title, "filename":obj.filename});
-    console.log(obj);
     return fetch("/api/songs/", {headers, method: "POST", body})
       .then(res => res.json())
       .then(song => {
         return dispatch({
           type: 'ADD_DUPLICATE_SONG',
+          song
+        })
+      })  
+  }
+}
+
+export const addDuplicateSongToMpd = obj => {
+  return dispatch => {
+    let headers = {"Content-Type": "application/json"};
+    let body = JSON.stringify({"filename":obj.filename});
+    return fetch("/api/mpd_queue/", {headers, method: "POST", body})
+      .then(res => res.json())
+      .then(song => {
+        return dispatch({
+          type: 'ADD_DUPLICATE_SONG_TO_MPD',
           song
         })
       })  
