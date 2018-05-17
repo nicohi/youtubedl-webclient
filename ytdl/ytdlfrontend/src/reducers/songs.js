@@ -19,9 +19,8 @@ const initialState = [];
       case 'DELETE_SONG':
         songList.splice(action.index, 1);
         return songList;
-      
       case 'FETCH_SONGS':
-        return [...state, ...action.songs];
+        return [...action.songs];
   
       default:
         return state;
