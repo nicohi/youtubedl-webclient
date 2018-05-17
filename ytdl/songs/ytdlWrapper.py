@@ -18,17 +18,20 @@ class MyLogger(object):
 
 def handle_finished(d):
     #turn video filename into .mp3 (youtubedl gives filename before conversion to mp3)
-    filename1 = d['filename'].split('/')[-1].split('.')[0] 
-    #filename2 = d['filename'].split('/')[-1]
     global data
+    print(d['filename'])
+    filename1 = data['filename'].split('/')[-1].split('.')[:-1]
+    filename1 = '.'.join(filename1)
+    #filename2 = d['filename'].split('/')[-1]
     data['filename'] = filename1 + '.mp3'
     data['title'] = filename1
     #print()
 
 def my_hook(d):
-    print(d)
+    #print(d)
     if d['status'] == 'downloading':
-        print('Downloading')
+        global data
+        data['filename'] = d['filename']
     if d['status'] == 'finished':
         handle_finished(d)
         print('Done downloading, now converting ...')
@@ -46,7 +49,7 @@ def dl_url(url, direc):
             #'key': 'AvConvExtractAudio',
             'preferredcodec': 'mp3',
             #'preferredcodec': 'libmp3lame',
-            'preferredquality': '192',
+            'preferredquality': '320',
         }],
         'quiet': 'False',
         'logger': MyLogger(),
