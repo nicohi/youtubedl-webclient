@@ -35,7 +35,7 @@ post
 curl --request POST \
     --url http://localhost:8000/api/songs/ \
     --header 'content-type: application/json' \
-    --data '{ "url": "test.url.com", "title": "testtitle", "state": "test-state" }'
+    --data '{ "url": "test.url.com", "title": "testtitle", "filename": "test" }'
 ```
 
 get all
